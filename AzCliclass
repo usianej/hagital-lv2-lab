@@ -1,0 +1,15 @@
+az group create --name CliLabResources --location eastus
+
+ az vm create -n MyVm -g CliLabResources --image Ubuntu2204
+
+ az vm create --admin-password P@ssw8rd27!!! --admin-username adminazure --image UbuntuLTS --name Pita5 --resource-group CliLabResources
+
+ az vm create --name MyVm --resource-group CliLabResources --image RedHat:RHEL:7-RAW:7.4.2018010506
+
+ az vm create --admin-username admjeff -g CliLabResources --name hagivm --image Ubuntu2204 --admin-username admjeff --generate-ssh-keys --output json --public-ip-sku Standard --verbose
+
+ -----
+  az appservice plan create --name hagitalapp123 --resource-group CliLabResources 
+
+
+----- ARM TEMPLATES ---------------

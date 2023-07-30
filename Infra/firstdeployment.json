@@ -1,0 +1,82 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "networkName": {
+            "type": "string",
+            "maxLength": 24,
+            "minLength": 4,
+            "metadata": {
+                "description": "Name of the Virtual Network"
+            }
+        },
+        "subNetName1": {
+            "type": "string",
+            "defaultValue": "subnet1",
+            "maxLength": 24,
+            "minLength": 4,
+            "metadata": {
+                "description": "Name of First Subnet"
+            }
+        },
+        "subNetName2": {
+            "type": "string",
+            "defaultValue": "subnet2",
+            "metadata": {
+                "description": "Name of Second Subnet"
+            }
+        },
+        "subNetName3": {
+            "type": "string",
+            "defaultValue": "subnet3",
+            "metadata": {
+                "description": "Name of Second Subnet"
+            }
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [{
+        "name": "[parameters('networkName')]",
+        "type": "Microsoft.Network/virtualNetworks",
+        "apiVersion": "2020-11-01",
+        "location": "[resourceGroup().location]",
+        "tags": {
+            "displayName": "virtualNetwork1"
+        },
+        "properties": {
+            "addressSpace": {
+                "addressPrefixes": [
+                    "10.0.0.0/16"
+                ]
+            },
+            "subnets": [
+                {
+                    "name": "[parameters('subNetName1')]",
+                    "properties": {
+                        "addressPrefix": "10.0.0.0/24"
+                    }
+                },
+                {
+                    "name": "[parameters('subNetName2')]",
+                    "properties": {
+                        "addressPrefix": "10.0.1.0/24"
+                    }
+                },
+                 {
+                    "name": "[parameters('subNetName3')]",
+                    "properties": {
+                        "addressPrefix": "10.0.2.0/24"
+                    }
+                }
+            ]
+        }
+    }],
+    "outputs": {
+        "stringOutput": {
+            "type": "string",
+            "value": "[deployment().name]"
+        }
+    }
+    
+}
